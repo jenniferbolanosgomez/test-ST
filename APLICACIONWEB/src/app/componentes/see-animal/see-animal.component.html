@@ -1,0 +1,42 @@
+<form [formGroup]="sellAnimalFb" (ngSubmit)="sellAnimal()">
+  <div class="spinner-border text-primary" role="status" *ngIf="loading">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  <div>
+    <h3><span>name: </span> {{animal.name}} </h3>
+    <ul>
+
+      <li><span>current price: </span>{{animal.price | currency}}</li>
+
+    </ul>
+
+  </div>
+  <div class="form-group row">
+  </div>
+  <div class="form-group row">
+    <label class="control-label col md-12">Document</label>
+    <div class="col-md-12">
+      <input type="text" min="1" max="5"
+        onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" class="form-control"
+        formControlName="document">
+    </div>
+    <span class="text-danger ml-3"
+      *ngIf="facturas.get('document').hasError('required') && facturas.get('document').touched">
+      required</span>
+  </div>
+  <div class="form-group row">
+    <label class="control-label col md-12">total price</label>
+    <div class="col-md-12">
+      <input type="text" readonly="readonly" class="form-control" formControlName="total"
+        onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+    </div>
+    <span class="text-danger ml-3"
+      *ngIf="sellAnimalFb.get('total').hasError('required') && sellAnimalFb.get('total').touched">
+      Required</span>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success float-right">Buy</button>
+    <button [routerLink]="['/animals']" class="btn btn-secondary float-left">Cancel</button>
+  </div>
+</form>

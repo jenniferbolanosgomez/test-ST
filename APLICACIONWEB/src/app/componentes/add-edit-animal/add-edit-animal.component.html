@@ -1,0 +1,67 @@
+<h3> {{ accion }} animal</h3>
+<div class="spinner-border text-primary" role="status" *ngIf="loading">
+    <span class="sr-only">Loading...</span>
+</div>
+
+<form [formGroup]="animals" (ngSubmit)="saveanimal()">
+    <div class="form-group row">
+        <label class="control-label col md-12">Name</label>
+        <div class="col-md-12">
+            <input type="text" class="form-control" formControlName="name">
+        </div>
+        <span class="text-danger ml-3"
+            *ngIf="animals.get('name').hasError('required') && animals.get('name').touched"> Required</span>
+    </div>
+
+    <div class="form-group row">
+        <label class="control-label col md-12">Breed</label>
+        <div class="col-md-12">
+            <input type="text" class="form-control" formControlName="breed">
+        </div>
+        <span class="text-danger ml-3"
+            *ngIf="animals.get('breed').hasError('required') && animals.get('breed').touched"> Required</span>
+    </div>
+
+    <div class="form-group row">
+        <label class="control-label col md-12">BirthDate</label>
+        <div class="col-md-12">
+            <input type="text" class="form-control" formControlName="birthDate">
+        </div>
+        <span class="text-danger ml-3"
+            *ngIf="animals.get('birthDate').hasError('required') && animals.get('birthDate').touched"> Required</span>
+    </div>
+
+    <div class="form-group row">
+        <label class="control-label col md-12">Sex</label>
+        <div class="col-md-12">
+            <input type="text" class="form-control" formControlName="sex">
+        </div>
+        <span class="text-danger ml-3"
+            *ngIf="animals.get('sex').hasError('required') && animals.get('sex').touched"> Required</span>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="control-label col md-12">Price</label>
+        <div class="col-md-12">
+            <input type="text" class="form-control" formControlName="price"
+                onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+        </div>
+        <span class="text-danger ml-3"
+            *ngIf="animals.get('price').hasError('required') && animals.get('price').touched"> Required</span>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="control-label col md-12">Status</label>
+        <div class="col-md-12">
+            <input type="text" class="form-control" formControlName="status">
+        </div>
+        <span class="text-danger ml-3"
+            *ngIf="animals.get('status').hasError('required') && animals.get('status').touched"> Required</span>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-success float-right" [disabled]="animals.invalid">Accept</button>
+        <button [routerLink]="['/animals']" class="btn btn-secondary float-left">Cancel</button>
+    </div>
+</form>
